@@ -30,7 +30,7 @@ curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @pcdm-object.ttl loc
 To make the pages members of the book, create an ldp:IndirectContainer, "members/" that will facilitate the establishment of relationships between "raven/" and its constituent pages.
 
 ```sh
-curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-membership.ttl localhost:8080/fcrepo/rest/objects/raven/members/
+curl -i -X PUT -H'Link: <http://www.w3.org/ns/ldp#IndirectContainer>;rel="type"' -H "Content-Type: text/turtle" --data-binary @ldp-membership.ttl localhost:8080/fcrepo/rest/objects/raven/members/
 ```
 
 An ldp:IndirectContaner is an LDP construct that activates the creation of certain RDF triples when a new resource is added as a child of this container.  Specifically, when a new resource is added inside of the "pages/" IndirectContainer, a new triple on the ldp:membershipResource ("raven/") will be created with the predicate defined by the ldp:hasMemberRelation property ("pcdm:hasMember") and an object that is a reference to the new resource.  The auto-created triple resulting from the addition of a new child resource within "pages/" will take the form:
@@ -53,7 +53,7 @@ In the same way that we used an ldp:DirectContainer to facilitate the auto-gener
 To begin with, create an ldp:DirectContainer, "files/", which is also a pcdm:Object, as a child of "cover/" as follows:
 
 ```sh
-curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-cover-direct.ttl localhost:8080/fcrepo/rest/objects/cover/files/
+curl -i -X PUT -H'Link: <http://www.w3.org/ns/ldp#DirectContainer>;rel="type"' -H "Content-Type: text/turtle" --data-binary @ldp-cover-direct.ttl localhost:8080/fcrepo/rest/objects/cover/files/
 ```
 
 Now, any new resource that is added as a child of the DirectContainer "files/" will cause the auto-generation of a new triple on "cover/" that has a predicate of pcdm:hasFile and an object of the new resource.
@@ -116,7 +116,7 @@ curl -i -X PATCH -H "Content-Type: application/sparql-update" --data-binary @pcd
 Here we repeat the exact steps as for the "page0/" above, but for "page1/".
 
 ```sh
-curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-page1-direct.ttl localhost:8080/fcrepo/rest/objects/page1/files/
+curl -i -X PUT -H'Link: <http://www.w3.org/ns/ldp#DirectContainer>;rel="type"' -H "Content-Type: text/turtle" --data-binary @ldp-page1-direct.ttl localhost:8080/fcrepo/rest/objects/page1/files/
 ```
 
 ### Page1 - Create Files
@@ -161,7 +161,7 @@ curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @pcdm-collection.ttl
 Lastly, create an ldp:IndirectContainer, "members/" that will facilitate the establishment of relationships between "poe/" and the collection members.
 
 ```sh
-curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-indirect.ttl localhost:8080/fcrepo/rest/collections/poe/members/
+curl -i -X PUT -H'Link: <http://www.w3.org/ns/ldp#IndirectContainer>;rel="type"' -H "Content-Type: text/turtle" --data-binary @ldp-indirect.ttl localhost:8080/fcrepo/rest/collections/poe/members/
 ```
 
 Similar to the previously described ldp:DirectContainer, an ldp:IndirectContainer is an LDP construct that also activates the creation of certain RDF triples when a new resource is added as a child of this container.  Just like with a DirectContainer, when a new resource is added inside of the "members/" IndirectContainer, a new triple on the ldp:membershipResource ("poe/") will be created with the predicate defined by the ldp:hasMemberRelation property ("pcdm:hasMember").  However, the difference from a DirectContainer is that the object of the created triple is not the newly added child, but instead the resource defined by the ldp:insertedContentRelation property (ore:proxyFor, in this case) found on the newly added child of this container.
@@ -246,7 +246,7 @@ curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @pcdm-object.ttl loc
 ### Alternate Ordering - Create membership container and proxies
 
 ```sh
-curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-ordering-alternate.ttl localhost:8080/fcrepo/rest/objects/alternateOrder/members/
+curl -i -X PUT -H 'Link: <http://www.w3.org/ns/ldp#IndirectContainer>;rel="type"' -H "Content-Type: text/turtle" --data-binary @ldp-ordering-alternate.ttl localhost:8080/fcrepo/rest/objects/alternateOrder/members/
 curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-page0-alternate.ttl localhost:8080/fcrepo/rest/objects/alternateOrder/members/page0Proxy
 curl -i -X PUT -H "Content-Type: text/turtle" --data-binary @ldp-page1-alternate.ttl localhost:8080/fcrepo/rest/objects/alternateOrder/members/page1Proxy
 ```
