@@ -1,5 +1,5 @@
 @prefix ldp: <http://www.w3.org/ns/ldp#>
 @prefix pcdm: <http://pcdm.org/models#>
 
-<> ldp:membershipResource </fcrepo/rest/objects/raven/> ;
+<> ldp:membershipResource </rest/objects/raven/> ;
   ldp:hasMemberRelation pcdm:hasMember .

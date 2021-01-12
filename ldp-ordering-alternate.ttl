@@ -2,6 +2,6 @@
 @prefix pcdm: <http://pcdm.org/models#>
 @prefix ore: <http://www.openarchives.org/ore/terms/>
 
-<> ldp:membershipResource </fcrepo/rest/objects/alternateOrder/> ;
+<> ldp:membershipResource </rest/objects/alternateOrder/> ;
   ldp:hasMemberRelation pcdm:hasMember ;
   ldp:insertedContentRelation ore:proxyFor .

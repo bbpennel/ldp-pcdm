@@ -2,6 +2,6 @@
 @prefix pcdm: <http://pcdm.org/models#>
 @prefix ore: <http://www.openarchives.org/ore/terms/>
 
-<> ldp:membershipResource </fcrepo/rest/objects/raven/> ;
+<> ldp:membershipResource </rest/objects/raven/> ;
   ldp:hasMemberRelation pcdm:hasMember ;
   ldp:insertedContentRelation ore:proxyFor .

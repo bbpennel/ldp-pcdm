@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FCREPO=http://localhost:8080/fcrepo/rest
+FCREPO=http://localhost:8080/rest
 
 # Create objects for a book and three pages
 curl -i -X PUT -H "Content-Type: text/turtle"                                $FCREPO/objects/

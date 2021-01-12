@@ -1,4 +1,4 @@
 @prefix ore: <http://www.openarchives.org/ore/terms/>
 
-<> ore:proxyFor </fcrepo/rest/objects/raven/> ;
-   ore:proxyIn </fcrepo/rest/collections/poe/> .
+<> ore:proxyFor </rest/objects/raven/> ;
+   ore:proxyIn </rest/collections/poe/> .

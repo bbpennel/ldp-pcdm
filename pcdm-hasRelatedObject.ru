@@ -1,5 +1,5 @@
 PREFIX pcdm: <http://pcdm.org/models#>
 INSERT {
-  <> pcdm:hasRelatedObject </fcrepo/rest/objects/alternateOrder/>
+  <> pcdm:hasRelatedObject </rest/objects/alternateOrder/>
 } WHERE {
 }
